@@ -55,7 +55,6 @@ workbox.routing.registerRoute(
   })
 );
 
-// Background Sync for POST to /api/*
 const bgQueue = new workbox.backgroundSync.BackgroundSyncPlugin('aso-post-queue', {
   maxRetentionTime: 24 * 60
 });
@@ -65,7 +64,6 @@ workbox.routing.registerRoute(
   'POST'
 );
 
-// Cache API GET (optional)
 workbox.routing.registerRoute(
   ({ request, url }) => request.method === 'GET' && request.destination === '' && /\/api\//.test(url.pathname),
   new workbox.strategies.StaleWhileRevalidate({
@@ -74,7 +72,6 @@ workbox.routing.registerRoute(
   })
 );
 
-// Push notifications
 self.addEventListener('push', event => {
   try {
     const data = event.data ? event.data.json() : {};
@@ -83,7 +80,7 @@ self.addEventListener('push', event => {
     const icon = data.icon || 'icon-192.png';
     const badge = data.badge || 'icon-192.png';
     const actions = data.actions || [];
-    event.waitUntil(self.registration.showNotification(title, { body, icon, badge, actions, data }));
+    event.waitUntil(self.registration.showNotification(title, { body, icon, badge, actions }));
   } catch (e) {
     event.waitUntil(self.registration.showNotification('Agent Super Orchestrator', {
       body: event.data ? event.data.text() : 'Notification',
