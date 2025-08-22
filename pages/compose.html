@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Compose | ASO</title><link rel="stylesheet" href="../styles.css"></head>
+<body>
+<header><nav><a href="../index.html">Home</a> | <a href="./inbox.html">Inbox</a> | <a href="./settings.html">Settings</a></nav><h1>Compose Post</h1></header>
+<main>
+  <div class="card">
+    <label>Target</label>
+    <select id="target">
+      <option value="telegram">Telegram</option>
+      <option value="wordpress">WordPress</option>
+      <option value="zapier">Zapier Webhook</option>
+      <option value="make">Make Webhook</option>
+      <option value="bitly">Shorten Link (Bitly)</option>
+    </select>
+    <label>Title</label><input id="title" placeholder="Title (optional)">
+    <label>Content / URL</label><textarea id="content" rows="8" placeholder="Write content or paste URL..."></textarea>
+    <div style="margin-top:12px;display:flex;gap:8px">
+      <button id="sendBtn">Send</button><small class="muted">Offline? The request will be queued.</small>
+    </div>
+  </div>
+  <pre id="log" class="card"></pre>
+</main>
+<script src="../api.js"></script>
+<script>
+async function send(){
+  const t=document.getElementById('target').value;
+  const title=document.getElementById('title').value;
+  const content=document.getElementById('content').value;
+  let endpoint='/api/telegram/send', body={};
+  if(t==='telegram'){ body={text:content}; }
+  if(t==='wordpress'){ endpoint='/api/wordpress/post'; body={title,content,status:'publish'}; }
+  if(t==='zapier'){ endpoint='/api/proxy/zapier'; body={payload:{title,content}}; }
+  if(t==='make'){ endpoint='/api/proxy/make'; body={payload:{title,content}}; }
+  if(t==='bitly'){ endpoint='/api/bitly/shorten'; body={long_url:content}; }
+  try{ const res=await api.post(endpoint,body); const txt=await res.text(); document.getElementById('log').textContent=txt; }
+  catch(e){ document.getElementById('log').textContent='Queued (offline)'; }
+}
+document.getElementById('sendBtn').onclick=send;
+</script>
+</body></html>

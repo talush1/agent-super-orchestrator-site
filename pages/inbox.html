@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Inbox | ASO</title><link rel="stylesheet" href="../styles.css"></head>
+<body>
+<header><nav><a href="../index.html">Home</a> | <a href="./compose.html">Compose</a> | <a href="./settings.html">Settings</a></nav><h1>Inbox</h1></header>
+<main>
+  <div class="card"><button onclick="exportJson()">Export JSON</button> <button onclick="clearAll()">Clear All</button></div>
+  <div id="items" class="grid"></div>
+</main>
+<script>
+function load(){ try{return JSON.parse(localStorage.getItem('aso:shares')||'[]')}catch(e){return[]} }
+function save(v){ localStorage.setItem('aso:shares', JSON.stringify(v)) }
+function del(id){ const list=load().filter(x=>x.id!==id); save(list); render(); }
+function exportJson(){ const blob=new Blob([JSON.stringify(load(),null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='aso-shares.json'; a.click(); }
+function clearAll(){ if(confirm('Delete all?')){ save([]); render(); } }
+function render(){
+  const list=load(); const items=document.getElementById('items'); items.innerHTML='';
+  if(!list.length){ items.innerHTML='<div class="card">No shares yet.</div>'; return; }
+  list.forEach(it=>{
+    const d=document.createElement('div'); d.className='card';
+    d.innerHTML='<b>'+(it.title||'(no title)')+'</b><br>'+(it.text||'')+'<br>'+(it.url?('<a target="_blank" href="'+it.url+'">'+it.url+'</a>'):'')+'<br><small class="muted">'+new Date(it.ts).toLocaleString()+'</small><div style="margin-top:8px"><button onclick="del('+it.id+')">Delete</button></div>';
+    items.appendChild(d);
+  });
+}
+render();
+</script>
+</body></html>

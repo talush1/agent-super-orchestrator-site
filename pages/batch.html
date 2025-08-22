@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Batch | ASO</title><link rel="stylesheet" href="../styles.css"></head>
+<body>
+<header><nav><a href="../index.html">Home</a> | <a href="./compose.html">Compose</a> | <a href="./settings.html">Settings</a></nav><h1>Batch Scheduler</h1></header>
+<main>
+  <div class="card">
+    <label>When</label><input id="when" type="datetime-local">
+    <label>Content</label><textarea id="content" rows="6"></textarea>
+    <div style="margin-top:8px"><button onclick="add()">Add Task</button> <button onclick="runDue()">Run Due</button></div>
+  </div>
+  <pre id="list" class="card"></pre>
+</main>
+<script src="../api.js"></script>
+<script>
+function load(){ return JSON.parse(localStorage.getItem('aso:tasks')||'[]'); }
+function save(v){ localStorage.setItem('aso:tasks', JSON.stringify(v)); }
+function render(){ document.getElementById('list').textContent = JSON.stringify(load(),null,2); }
+function add(){ const t=document.getElementById('when').value; const c=document.getElementById('content').value; const arr=load(); arr.push({when:t,content:c,done:false}); save(arr); render(); }
+async function runDue(){ const now=new Date(); const arr=load(); for(const it of arr){ if(!it.done && it.when && new Date(it.when)<=now){ try{ await api.post('/api/telegram/send',{text:it.content}); it.done=true; }catch(e){} } } save(arr); render(); }
+render();
+</script>
+</body></html>
