@@ -1,89 +1,34 @@
 <!doctype html>
 <html lang="en" dir="ltr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Agent Super Orchestrator</title>
-  <meta name="description" content="An AI automation engine that runs tasks: publishing, uploads, webhooks, YouTube, WordPress and more.">
-  <link rel="manifest" href="manifest.json">
-  <style>
-    :root { --indigo:#4B0082; --blue:#1e90ff; }
-    * { box-sizing:border-box; } 
-    <script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('service-worker.js', { scope: './' }).catch(console.error);
-  });
-}
-</script>
-    <script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('service-worker.js', { scope: './' }).catch(console.error);
-  });
-}
-</script>
-    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:#f7f7fb; color:#0f1226; }
-    header { padding:56px 20px; text-align:center; background: linear-gradient(135deg,var(--indigo) 0%, var(--blue) 100%); color:white; }
-    header h1 { margin:0 0 10px; font-size:40px; letter-spacing:.5px; }
-    header p { margin:0; opacity:.9; }
-    .cta { display:inline-block; margin:24px 8px 0; padding:12px 20px; background:white; color:var(--indigo); border-radius:999px; text-decoration:none; font-weight:700; }
-    .wrap { max-width:1000px; margin:0 auto; padding:32px 20px; }
-    .grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap:16px; }
-    .card { background:white; border-radius:16px; padding:20px; box-shadow:0 6px 18px rgba(0,0,0,.06); }
-    h2 { margin-top:8px; }
-    ol { line-height:1.8; }
-    footer { text-align:center; padding:40px 20px; color:#555; }
-  </style>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent Super Orchestrator</title>
+<link rel="manifest" href="manifest.json"><link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <h1>Agent Super Orchestrator</h1>
-    <p>Perform smart automations: publishing, triggers, uploads, Telegram, WordPress, YouTube and more.</p>
-    <a class="cta" href="#get-started">Get Started</a>
-    <a class="cta" href="app-release.apk">📲 Download APK</a><br><br>
-    <a href="index.html">🇮🇱 Hebrew</a> | <a href="index-en.html">🇬🇧 English</a>
-  </header>
-
-  <main class="wrap">
-    <section class="grid">
-      <div class="card">
-        <h3>Plan → Execute</h3>
-        <p>Write what you need. The agent builds a JSON step plan and executes it via real APIs.</p>
-      </div>
-      <div class="card">
-        <h3>Tool Integration</h3>
-        <p>Telegram, Reddit, WordPress, Zapier/Make, YouTube uploads and more.</p>
-      </div>
-      <div class="card">
-        <h3>Local or Cloud</h3>
-        <p>Run with a local Ollama model or hosted API keys — totally flexible.</p>
-      </div>
-      <div class="card">
-        <h3>Control & Security</h3>
-        <p>Encrypted token vault — you control the permissions and deployments.</p>
-      </div>
-    </section>
-
-    <section id="get-started" class="wrap">
-      <h2>How to Get Started</h2>
-      <ol>
-        <li>Deploy/host your backend & UI (or static hosting).</li>
-        <li>Configure credentials (Telegram, WordPress, Reddit, Webhooks).</li>
-        <li>Open the interface → <b>Create Plan</b> → <b>Run Plan</b>.</li>
-      </ol>
-    </section>
-  </main>
-
-  <footer>© 2025 Agent Super Orchestrator</footer>
-
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('service-worker.js').catch(console.error);
-    });
-  }
-</script>
-
+<header>
+  <nav>
+    <a href="index.html">HE</a> | 
+    <a href="index-en.html">Home</a> | 
+    <a href="pages/compose.html">Compose</a> | 
+    <a href="pages/inbox.html">Inbox</a> | 
+    <a href="pages/batch.html">Batch</a> | 
+    <a href="pages/utm.html">UTM</a> | 
+    <a href="pages/settings.html">Settings</a>
+  </nav>
+  <h1>Agent Super Orchestrator</h1>
+  <p>Automations: publish, triggers, uploads, Telegram, WordPress, YouTube via proxy backend.</p>
+</header>
+<main>
+  <div class="grid">
+    <div class="card"><h3>Plan → Execute</h3><p>The agent structures steps and executes via real APIs.</p></div>
+    <div class="card"><h3>Integrations</h3><p>Telegram, WordPress, Zapier/Make, YouTube (via backend).</p></div>
+    <div class="card"><h3>Offline</h3><p>Service Worker + Background Sync – requests queue and retry.</p></div>
+    <div class="card"><h3>Key Vault</h3><p>Local encryption with PIN using Web Crypto API.</p></div>
+  </div>
+</main>
+<script src="api.js"></script>
+<script src="sw-register.js"></script>
+<script src="share-handler.js"></script>
 </body>
 </html>

@@ -1,6 +1,8 @@
 {
   "name": "Agent Super Orchestrator",
   "short_name": "ASO",
+  "lang": "en",
+  "dir": "ltr",
   "id": "/agent-super-orchestrator-site/",
   "scope": "/agent-super-orchestrator-site/",
   "start_url": "/agent-super-orchestrator-site/index.html",
@@ -12,40 +14,17 @@
   "background_color": "#ffffff",
   "theme_color": "#64AAFF",
   "description": "An AI automation engine for publishing, uploads, and integrations (Telegram, YouTube, WordPress, Zapier, Make and more).",
+  "categories": [
+    "productivity",
+    "utilities",
+    "business",
+    "automation",
+    "ai"
+  ],
   "icons": [
-    {
-      "src": "icon-48.png",
-      "sizes": "48x48",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "icon-72.png",
-      "sizes": "72x72",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "icon-96.png",
-      "sizes": "96x96",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "icon-128.png",
-      "sizes": "128x128",
-      "type": "image/png",
-      "purpose": "any"
-    },
     {
       "src": "icon-192.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "icon-256.png",
-      "sizes": "256x256",
       "type": "image/png",
       "purpose": "any"
     },
@@ -60,6 +39,56 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshot-1080x1920.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Plan and run automations"
+    },
+    {
+      "src": "screenshot-1280x720.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "label": "Publish, upload and integrate"
+    }
+  ],
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "iarc_rating_id": "IARC_UNRATED",
+  "scope_extensions": [
+    {
+      "origin": "https://talush1.github.io"
+    }
+  ],
+  "share_target": {
+    "action": "/agent-super-orchestrator-site/index.html",
+    "method": "GET",
+    "enctype": "application/x-www-form-urlencoded",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  "shortcuts": [
+    {
+      "name": "Compose",
+      "url": "/agent-super-orchestrator-site/pages/compose.html"
+    },
+    {
+      "name": "Inbox",
+      "url": "/agent-super-orchestrator-site/pages/inbox.html"
+    },
+    {
+      "name": "Settings",
+      "url": "/agent-super-orchestrator-site/pages/settings.html"
     }
   ]
 }
