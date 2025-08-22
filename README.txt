@@ -1,0 +1,1 @@
+Simple static site. Deploy to Netlify/Vercel.
